@@ -1,0 +1,28 @@
+{
+    "riskLevel": [
+        {
+            "level" : 0,
+            "description" : "Low"
+        },
+        {
+            "level" : 1,
+            "description" : "Medium"
+        },
+        {
+            "level" : 2,
+            "description" : "High"
+        },
+        {
+            "level" : 3,
+            "description" : "Critical"
+        },
+        {
+            "level" : 4,
+            "description" : "Unknown"
+        },
+        {
+            "level" : 5,
+            "description" : "Extreme"
+        }
+    ]
+}

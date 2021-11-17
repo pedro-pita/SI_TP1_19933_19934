@@ -1,0 +1,24 @@
+{
+    "transmissionLevel": [
+        {
+            "level" : 0,
+            "description" : "Low"
+        },
+        {
+            "level" : 1,
+            "description" : "Moderate"
+        },
+        {
+            "level" : 2,
+            "description" : "Substantial"
+        },
+        {
+            "level" : 3,
+            "description" : "High"
+        },
+        {
+            "level" : 4,
+            "description" : "Unknown"
+        }
+    ]
+}
