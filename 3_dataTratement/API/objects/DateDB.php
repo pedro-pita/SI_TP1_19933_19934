@@ -6,6 +6,15 @@ class DateDB{
     function __construct($db){
         $this->conn = $db;
     }
+
+    function getAll(){
+        $query = 'SELECT * FROM ' . $this->table . ' ORDER BY dateKey ASC';
+
+        $stmt = $this->conn->query($query);
+        if ($stmt->rowCount() > 0)
+            return $stmt->fetchAll();
+        return ['status' => 'error', 'message' => 'No data'];
+    }
     
     function insert($data){
         $query = "INSERT INTO $this->table (dateKey, date, year, month, monthName, dayOfMonth, dayOfWeek, dayOfWeekName) VALUES (:dateKey, :date, :year, :month, :monthName, :dayOfMonth, :dayOfWeek, :dayOfWeekName)";

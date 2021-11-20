@@ -5,6 +5,8 @@
 
     include_once '../db/ConnectionDB.php';
     include_once '../objects/InformationDB.php';
+    include_once '../objects/StateDB.php';
+    include_once '../objects/DateDB.php';
 
     // Instace Database
     $db = new ConnectionDB();
@@ -15,8 +17,14 @@
     
 
     $informationDB = new InformationDB($conn);
+    $statesDB = new StateDB($conn);
+    $dateDB = new DateDB($conn);
 
-    $response = $informationDB->getPerStateDate();
+    $response = [
+        'info' => $informationDB->getPerStateDate(),
+        'states' => $statesDB->getAll(),
+        'dates' => $dateDB->getAll()
+    ];
 
     echo json_encode($response);
     

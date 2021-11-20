@@ -1,15 +1,75 @@
 $(function() {
     const ctx = $('#myChart');
     
-    let ajaxData = ajaxRequest('../../API/info/getPerStateDate.php', {});
-    console.log(ajaxData);
+    let ajaxData = ajaxRequest('http://localhost/SI/SI_TP1_19933_19934/3_dataTratement/API/info/getPerStateDate.php', {});
+    
+    let labels = [];
+    let datasets = [];
+    
+    $.each(ajaxData.info, function(key, value) {
+        //console.log("key: " + key + " value: " + value.stateCode);
+
+        /*labels.push(value.year + "-" + value.month + "-" + value.dayOfMonth);
+        let info = {
+            label: value.stateCode,
+            data: [55, 124, 5, 9, 5, 6, 35],
+            backgroundColor: Math.floor(Math.random()*16777215).toString(16)
+        }
+        datasets.push(info);*/
+    });
+
+    let countryData = [];
+    $.each(ajaxData.dates, function(key, value) {
+        labels.push(value.date);
+        let dataDate = ajaxData.info.filter(function (entry) {
+            return entry.dateKeyFK === value.dateKey;
+        });
+        //console.log(dataDate);
+        let countryItem = 0;
+        $.each(dataDate, function(index, value) {
+            //console.log(value.currentCases);
+            countryItem += parseInt(value.currentCases);
+        });
+        
+        countryData.push(countryItem);
+        //console.log(countryItem);
+    });
+    let countryDataChart = {
+        type: 'line',
+        label: 'USA',
+        data: countryData,
+        backgroundColor: getRandomColor()
+    };
+    datasets.push(countryDataChart);
+    
+    $.each(ajaxData.states, function(key, value) {
+        let dataState = ajaxData.info.filter(function (entry) {
+            return entry.stateCode === value.stateCode;
+        });
+        let dataStateDay = [];
+        $.each(dataState, function(key, value) {
+            dataStateDay.push(value.currentCases);
+        });
+        let item = {
+            type: 'bar',
+            label: value.stateCode,
+            data: dataStateDay,
+            backgroundColor: getRandomColor()
+        };
+        datasets.push(item);
+    });
+
+    /*var stateCodeAK = ajaxData.info.filter(function (entry) {
+        return entry.stateCode === 'AK';
+    });
+    console.log(stateCodeAK);*/
 
     const DATA_COUNT = 7;
 
-    const labels = months(7);
+    //const labels = months(7);
     const data = {
         labels: labels,
-        datasets: [
+        /*datasets: [
             {
                 label: 'Dataset 1',
                 data: [55, 124, 5, 9, 5, 6, 35],
@@ -25,17 +85,17 @@ $(function() {
                 data: [5, 10, 2, 40, 53, 54, 62],
                 backgroundColor: '#0000ff',
             },
-        ]
+        ]*/
+        datasets: datasets
     };
     
     const config = {
-        type: 'bar',
         data: data,
         options: {
             plugins: {
                 title: {
                 display: true,
-                text: 'Chart.js Bar Chart - Stacked'
+                text: 'Current Cases'
                 },
             },
             responsive: true,
@@ -44,7 +104,7 @@ $(function() {
                     stacked: true,
                 },
                     y: {
-                    stacked: true
+                    stacked: false
                 }
             }
         }
@@ -70,6 +130,15 @@ $(function() {
 /* This JavaScript function always returns a random number between min and max (both included) */
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++)
+      color += letters[Math.floor(Math.random() * 16)];
+    
+    return color;
 }
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

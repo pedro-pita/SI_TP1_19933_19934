@@ -14,7 +14,7 @@ class InformationDB{
             INNER JOIN dim_transmission_level as dtl ON fi.transmissionLevelFK = dtl.level
             INNER JOIN dim_risk_level as drl ON fi.riskLevelFK = drl.level
             GROUP BY fi.stateCodeFK, fi.dateKeyFK
-            ORDER BY fi.stateCodeFK ASC, fi.dateKeyFK DESC'
+            ORDER BY fi.stateCodeFK ASC, fi.dateKeyFK ASC'
         ;
 
         $stmt = $this->conn->query($query);
