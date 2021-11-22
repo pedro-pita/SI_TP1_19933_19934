@@ -8,7 +8,7 @@ class StateDB{
     }
     
     function insert($data){
-        $query = "INSERT INTO $this->table (stateCode, name, fips, population, countryCode, countryName) VALUES (:stateCode, :name, :fips, :population, :countryCode, :countryName)";
+        $query = "INSERT INTO $this->table (stateCode, name, fips, population, locationIso2, countryCode, countryName) VALUES (:stateCode, :name, :fips, :population, :locationIso2, :countryCode, :countryName)";
         $stmt = $this->conn->prepare($query);
         foreach($data as $item)
         {
@@ -16,6 +16,7 @@ class StateDB{
             $stmt->bindValue(':name', $item->name);
             $stmt->bindValue(':fips', $item->fips);
             $stmt->bindValue(':population', $item->population);
+            $stmt->bindValue(':locationIso2', $item->locationIso2);
             $stmt->bindValue(':countryCode', $item->countryCode);
             $stmt->bindValue(':countryName', $item->countryName);
 

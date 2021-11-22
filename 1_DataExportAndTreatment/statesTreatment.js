@@ -69,7 +69,8 @@ for(var i in data) {
         name: covertShortToName(data[i]["state"]),
         fips: data[i]["fips"],
         population: data[i]["population"],
-        countryCode: "USA",
+        //locationIso2: data[i]["locationId"].split("#")[1].replaceAll("iso2:",""),
+        countryCode: "US",
         countryName: "United States"
     });
 }

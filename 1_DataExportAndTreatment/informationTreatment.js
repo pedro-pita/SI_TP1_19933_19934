@@ -62,7 +62,6 @@ cdcTransmissionLevelTimeseries (per day)
 //ENTRADA
 var data = JSON.parse(fs.readFileSync('./ExportedData/data_US_counties_daily.json'));
 var information = {information: {}};
-var current_state = "";
 //TRATAMENTO
 for(var i in data) {
     var stateDate = Object();
@@ -104,50 +103,48 @@ fs.writeFile('./TreatedData/information.json', JSON.stringify(information), (err
 /*
 {
    "information":{
-       "USA":{
-            "AK":{
-                "2020-01-21":{
-                    "current_cases":"int",
-                    "current_deaths":"int",
-                    "positiveTests":"int",
-                    "negativeTests":"int",
-                    "newCases":"int",
-                    "newDeaths":"int",
-                    "contactTracers":"int",
-                    "testsPositives":"int",
-                    "testsNegatives":"int",
-                    "vaccinesDistributed":"int",
-                    "vaccinesAdministered":"int",
-                    "vaccinesCompleted":"int",
-                    "hospitalCapacity":"int",
-                    "hospitalCurrentUsageTotal":"int",
-                    "hospitalCurrentUsageCovid":"int",
-                    "dateKeyFK":"int",
-                    "stateCodeFK":"string",
-                    "trasmissionLevelFK":"int",
-                    "riskLevelFK":"int"
-                },
-                "2020-01-22":{
-                    "current_cases":"int",
-                    "current_deaths":"int",
-                    "positiveTests":"int",
-                    "negativeTests":"int",
-                    "newCases":"int",
-                    "newDeaths":"int",
-                    "contactTracers":"int",
-                    "testsPositives":"int",
-                    "testsNegatives":"int",
-                    "vaccinesDistributed":"int",
-                    "vaccinesAdministered":"int",
-                    "vaccinesCompleted":"int",
-                    "hospitalCapacity":"int",
-                    "hospitalCurrentUsageTotal":"int",
-                    "hospitalCurrentUsageCovid":"int",
-                    "dateKeyFK":"int",
-                    "stateCodeFK":"string",
-                    "trasmissionLevelFK":"int",
-                    "riskLevelFK":"int"
-                }
+        "AK":{
+            "2020-01-21":{
+                "current_cases":"int",
+                "current_deaths":"int",
+                "positiveTests":"int",
+                "negativeTests":"int",
+                "newCases":"int",
+                "newDeaths":"int",
+                "contactTracers":"int",
+                "testsPositives":"int",
+                "testsNegatives":"int",
+                "vaccinesDistributed":"int",
+                "vaccinesAdministered":"int",
+                "vaccinesCompleted":"int",
+                "hospitalCapacity":"int",
+                "hospitalCurrentUsageTotal":"int",
+                "hospitalCurrentUsageCovid":"int",
+                "dateKeyFK":"int",
+                "stateCodeFK":"string",
+                "trasmissionLevelFK":"int",
+                "riskLevelFK":"int"
+            },
+            "2020-01-22":{
+                "current_cases":"int",
+                "current_deaths":"int",
+                "positiveTests":"int",
+                "negativeTests":"int",
+                "newCases":"int",
+                "newDeaths":"int",
+                "contactTracers":"int",
+                "testsPositives":"int",
+                "testsNegatives":"int",
+                "vaccinesDistributed":"int",
+                "vaccinesAdministered":"int",
+                "vaccinesCompleted":"int",
+                "hospitalCapacity":"int",
+                "hospitalCurrentUsageTotal":"int",
+                "hospitalCurrentUsageCovid":"int",
+                "dateKeyFK":"int",
+                "stateCodeFK":"string",
+                "trasmissionLevelFK":"int",
+                "riskLevelFK":"int"
             }
         }
    }
